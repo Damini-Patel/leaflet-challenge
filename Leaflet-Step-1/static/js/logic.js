@@ -49,7 +49,7 @@ d3.json(queryUrl, function (data) {
   // set function for different color from magnitude
   function getColor(magnitude) {
     switch (true) {
-      case magnitude > 5:
+      case magnitude >= 5:
         return "#ea2c2c";
       case magnitude > 4:
         return "#ea822c";
@@ -100,29 +100,15 @@ d3.json(queryUrl, function (data) {
   // details for the legend
   legend.onAdd = function () {
     var div = L.DomUtil.create("div", "info legend");
+    var labels = ["0-1", "1-2", "2-3", "3-4", "4-5", "5+"];
 
-    var levels = [0, 1, 2, 3, 4, 5];
-    var colors = [
-      "#98ee00",
-      "#d4ee00",
-      "#eecc00",
-      "#ee9c00",
-      "#ea822c",
-      "#ea2c2c",
-    ];
-
-    // Looping through
-    for (var i = 0; i < levels.length; i++) {
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < labels.length; i++) {
       div.innerHTML +=
-        "<i style='background: " +
-        colors[i] +
-        "'></i> " +
-        levels[i] +
-        (levels[i + 1] ? "&ndash;" + levels[i + 1] + "<br>" : "+");
+        '<i style="background:' + getColor(i) + '"></i> ' + labels[i] + "<br>";
     }
     return div;
   };
-
-  // Finally, we our legend to the map.
+  // Add the info legend to the map
   legend.addTo(myMap);
 });
