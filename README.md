@@ -22,9 +22,5 @@ Visualize an earthquake data set.
 
 
 
-Output map:
 
-![](C:\Dev\GitHub\leaflet-challenge\leaflet-challenge\images\part1.PNG)
-
----
 
